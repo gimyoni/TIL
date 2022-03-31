@@ -1,10 +1,20 @@
 var express = require('express');
 var app = express()
 var bodyParser = require('body-parser')
+var mysql = require('mysql')
+
+var connection = mysql.createConnection({
+	host : 'localhost',
+	post : 3306,
+	password : '1234',
+	database : 'jsman'
+})
+
+connection.connect()
 
 app.listen(3000, function() {
 	console.log("start! express server on port 3000");
-});
+});``
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -30,7 +40,18 @@ app.post('/email_post', function(req,res){
 })
 
 app.post('/ajax_email_send', function(req, res){
-	console.log(req.body.email)
-	var responseData = {'result':'ok', 'email':req.body.email}
-	res.json(responseData)
+	var email = req.body.email;
+	var responseData = {};
+
+	var query = conenction.query('select name from user where email="'+ email + '"', function(err, rows){
+		if(err) throw err;
+		if(rows[0]){
+			responseData.result = "ok";
+			responseData.name = rows[0].name;
+		}else{
+			responseData.result = "name";
+			responseData.name = "";
+		}
+		res.json(responseData)
+	})
 })
