@@ -31,7 +31,13 @@ passport.use('local-join', new localStrategy({
     }, function(req, email, password, done){
         console.log('local-join call back called');
     }
-});
+));
+
+router.post('/', passport.authenticate('local-join', {
+    successRedirect: '/main',
+    failureRedirect: '/join',
+    failureFlash: true
+}))
 
 // router.post('/', function(req,res){
 //     var body = req.body;
