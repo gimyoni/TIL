@@ -4,7 +4,8 @@ var router = express.Router();
 var path = require('path')
 var mysql = require('mysql');
 const passport = require('passport');
-var passport = require('passport')
+var passport = require('passport');
+const { CLIENT_FOUND_ROWS } = require('mysql/lib/protocol/constants/client');
 var localStrategy = require('passport-local').Strategy;
 
 
@@ -20,16 +21,33 @@ connection.connect()
 
 // Router !!
 router.get('/', function(req,res){
-    console.log('get join url');
-    res.render('join.ejs');
+    var msg;
+    var errMsg = req.flash('error')
+    if(errMsg) msg = errMsg;
+    res.render('join.ejs', {'message' : msg});
 })
+
+//passport.serialize
 
 passport.use('local-join', new localStrategy({
     usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
     }, function(req, email, password, done){
-        console.log('local-join call back called');
+        var query = connection.query('select * from user where email=?', [email], function(err, row){
+            if(err) return done(err);
+
+            if(rows.length){
+                console.log('existed user')
+                return done(null, false, {message : 'your email is already used'})
+            }else{
+                var sql = {email: email, pw : password};
+                var query = connection.query('insert into user set ?', sql, function(err, rows){
+                    if(err) throw err
+                    return done(null, {'email' : email, 'id' : rows.insertId})
+                })
+            }
+        })
     }
 ));
 
