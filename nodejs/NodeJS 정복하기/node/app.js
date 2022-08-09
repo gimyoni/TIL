@@ -11,14 +11,35 @@
 // console.log(result);
 
 // 06
-const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
+// const readline = require("readline");
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// })
 
-rl.question("what is your name ? ", (answer)=>{
-    console.log("Hello "+answer);
+// rl.question("what is your name ? ", (answer)=>{
+//     console.log("Hello "+answer);
     
-    rl.close();
-})
+//     rl.close();
+// })
+
+// 07
+const fs = require('fs');
+
+// fs.writeFileSync("./hello.txt", "Hello Youtubers");
+
+// const data = fs.readFileSync("./hello.txt",  {encoding: "utf-8"});
+// console.log(data);
+
+// fs.appendFileSync("./hello.txt", "\nWelcome!");
+
+const list = fs.readdirSync(".");
+console.log(list);
+``` [
+  'add.js',
+  'app.js',
+  'hello.txt',
+  'mult.js',
+  'package.json',
+  'stat.js'
+]```
