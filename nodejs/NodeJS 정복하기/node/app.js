@@ -24,7 +24,7 @@
 // })
 
 // 07
-const fs = require('fs');
+//const fs = require('fs');
 
 // fs.writeFileSync("./hello.txt", "Hello Youtubers");
 
@@ -33,8 +33,8 @@ const fs = require('fs');
 
 // fs.appendFileSync("./hello.txt", "\nWelcome!");
 
-const list = fs.readdirSync(".");
-console.log(list);
+//const list = fs.readdirSync(".");
+//console.log(list);
 ``` [
   'add.js',
   'app.js',
@@ -43,3 +43,17 @@ console.log(list);
   'package.json',
   'stat.js'
 ]```
+
+// 8
+
+// Synchronous vs Asynchronous
+// Block       vs Non-Block
+
+const fs = require('fs');
+
+let startTime = Date.now();
+let text = "default";
+setTimeout(()=> {
+    console.log(Date.now() - startTime, "First");
+}, 5000);
+console.log(Date.now() = startTime, "Second");
