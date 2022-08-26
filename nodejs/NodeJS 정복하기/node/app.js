@@ -35,25 +35,32 @@
 
 //const list = fs.readdirSync(".");
 //console.log(list);
-``` [
-  'add.js',
-  'app.js',
-  'hello.txt',
-  'mult.js',
-  'package.json',
-  'stat.js'
-]```
+// ``` [
+//   'add.js',
+//   'app.js',
+//   'hello.txt',
+//   'mult.js',
+//   'package.json',
+//   'stat.js'
+// ]```
 
 // 8
 
 // Synchronous vs Asynchronous
 // Block       vs Non-Block
 
-const fs = require('fs');
+// const fs = require('fs');
 
-let startTime = Date.now();
-let text = "default";
-setTimeout(()=> {
-    console.log(Date.now() - startTime, "First");
-}, 5000);
-console.log(Date.now() = startTime, "Second");
+// let startTime = Date.now();
+// let text = "default";
+// setTimeout(()=> {
+//     console.log(Date.now() - startTime, "First");
+// }, 5000);
+// console.log(Date.now() = startTime, "Second");
+
+// 10 - NPM 패키지
+const readline = require('readline-sync');
+
+const name = readline.question("what is your name?");
+
+console.log(name);
