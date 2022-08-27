@@ -59,8 +59,23 @@
 // console.log(Date.now() = startTime, "Second");
 
 // 10 - NPM 패키지
-const readline = require('readline-sync');
+// const readline = require('readline-sync');
 
-const name = readline.question("what is your name?");
+// const name = readline.question("what is your name?");
 
-console.log(name);
+// console.log(name);
+
+// 11
+// JSON
+// Javascript Object Notation
+const fs = require('fs');
+
+const data = fs.readFileSync("./vocab.json", {encoding : "utf-8"});
+let arr = JSON.parse(data);
+const ob = {
+    name: "Daniel",
+    age: 20,
+    description: "I go to school.",
+};
+
+fs.writeFileSync("test.json", JSON.stringify(ob, null, 2));
