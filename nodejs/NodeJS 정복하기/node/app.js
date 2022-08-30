@@ -68,14 +68,30 @@
 // 11
 // JSON
 // Javascript Object Notation
-const fs = require('fs');
+// const fs = require('fs');
 
-const data = fs.readFileSync("./vocab.json", {encoding : "utf-8"});
-let arr = JSON.parse(data);
-const ob = {
-    name: "Daniel",
-    age: 20,
-    description: "I go to school.",
-};
+// const data = fs.readFileSync("./vocab.json", {encoding : "utf-8"});
+// let arr = JSON.parse(data);
+// const ob = {
+//     name: "Daniel",
+//     age: 20,
+//     description: "I go to school.",
+// };
 
-fs.writeFileSync("test.json", JSON.stringify(ob, null, 2));
+// fs.writeFileSync("test.json", JSON.stringify(ob, null, 2));
+
+// 13 HTTP 서버 만들기
+const http = require("http");
+
+const server = http.createServer((req, res) => {
+    if(req.url==="/"){
+        res.write("<h1>Hello from nodejs</h1>");
+    }else{
+        req.write(`<h1>You have entered this url : ${req.url} </h1>`);
+    }
+    res.end();
+});
+
+server.listen(3000, ()=>{
+    console.log("The server is listening on port 3000");
+})
