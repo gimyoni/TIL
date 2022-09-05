@@ -97,6 +97,8 @@
 // })
 
 const express = require("express");
+const hbs = require("express-handlebars");
+
 const server = express();
 
 // GET www.facebook.com/
@@ -104,19 +106,33 @@ const server = express();
 // DELETE
 // PUT
 
+server.engine(
+    "hbs",
+    hbs({
+        extname:"hbs",
+        defaultLayout:"layout.hbs",
+        partialsDir:"partials",
+    })
+);
+server.set("view engine", "hbs");
 server.use(express.static(__dirname+"/public"));
 
-server.get("/", (req, res)=>{
-    res.sendFile(__dirname + "/index.html");
-});
+server.get("/", (req,res)=>{
+    res.render("home", {
+        message: "Hello from node.js",
+    });
+})
+// server.get("/", (req, res)=>{
+//     res.sendFile(__dirname + "/index.html");
+// });
 
-server.get("/about", (req, res)=>{
-    res.sendFile(__dirname + "/about.html");
-});
+// server.get("/about", (req, res)=>{
+//     res.sendFile(__dirname + "/about.html");
+// });
 
-server.use((req, res) => {
-    res.sendFile(__dirname + "/404.html");
-});
+// server.use((req, res) => {
+//     res.sendFile(__dirname + "/404.html");
+// });
 
 server.listen(3000, (err)=>{
     if(err) return console.log(err);
