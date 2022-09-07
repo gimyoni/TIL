@@ -2,9 +2,6 @@
   "name": "node",
   "version": "1.0.0",
   "main": "app.js",
-  "scripts": {
-    "dev": "nodemon app.js"
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -14,6 +11,9 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.19"
+  },
+  "scripts": {
+    "dev": "nodemon app.js -e js,json,hbs"
   },
   "keywords": [],
   "description": ""

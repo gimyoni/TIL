@@ -117,11 +117,21 @@ server.engine(
 server.set("view engine", "hbs");
 server.use(express.static(__dirname+"/public"));
 
-server.get("/", (req,res)=>{
+server.get("/", (req, res) => {
     res.render("home", {
-        message: "Hello from node.js",
+      message: "Hello from node.js",
     });
-})
+});
+  
+server.get("/add", (req, res) => {
+    res.render("add");
+});
+server.get("/quiz", (req, res) => {
+    res.render("quiz");
+});
+server.use((req, res) => {
+    res.render("404");
+});
 // server.get("/", (req, res)=>{
 //     res.sendFile(__dirname + "/index.html");
 // });
