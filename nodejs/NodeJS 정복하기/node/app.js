@@ -100,6 +100,7 @@ const express = require("express");
 const hbs = require("express-handlebars");
 
 const server = express();
+const words = require("./db/words.json");
 
 // GET www.facebook.com/
 // POST ID:abc Pass:1234
@@ -119,7 +120,7 @@ server.use(express.static(__dirname+"/public"));
 
 server.get("/", (req, res) => {
     res.render("home", {
-      message: "Hello from node.js",
+      words,
     });
 });
   
