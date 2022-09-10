@@ -132,6 +132,11 @@ server.post("/", (req, res) => {
   });
 });
   
+server.delete("/", (req, res) => {
+    let { word } = req.body;
+    words = words.filter((w) => !(w.word === word));
+});
+
 server.get("/add", (req, res) => {
     res.render("add");
 });
