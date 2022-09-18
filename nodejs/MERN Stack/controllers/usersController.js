@@ -34,7 +34,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     }
 
     // Hash password
-    const hashedPwd = await bcrypt.hash(password, 100) // salt rounds
+    const hashedPwd = await bcrypt.hash(password, 10) // salt rounds
 
     const userObject = { username, "password" : hashedPwd, roles}
 
@@ -97,14 +97,14 @@ const deleteUser = asyncHandler(async (req, res) => {
         return res.status(400).json({message: 'User ID Required'})    
     }
 
-    const notes = await Note.findOne({user : id}).lean().exec()
-    if(notes?.length){
+    const note = await Note.findOne({user : id}).lean().exec()
+    if (note) {
         return res.status(400).json({message:'User has assigned notes'})
     }
 
     const user = await User.findById(id).exec()
 
-    if(!user) {
+    if (!user) {
         return res.status(400).json({message : 'User not found'})
     }
 
